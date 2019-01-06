@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -eu
+topdir=$(dirname $0|xargs realpath)
+source "$topdir/configs/settings.sh"
+docker run -it --rm -e DB_PASSWORD=$DB_PASSWORD \
+  -p 80:8080 \
+  -v "$topdir/../RunestoneServer/docker/entrypoint.sh:/entrypoint.sh" --entrypoint /entrypoint.sh \
+  -v "$topdir/ext:/srv/ext" \
+  yarikoptic-runestone:0.1.1
