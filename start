@@ -4,10 +4,17 @@ set -eu
 topdir=$(dirname $0|xargs realpath)
 source "$topdir/configs/settings.sh"
 
-# books must not be symlinked from /srv/ext so also bind mounted
-docker run -it --rm -e DB_PASSWORD=$DB_PASSWORD \
+img=yarikoptic-runestone:0.2.0
+
+# NOTE: books must not be symlinked from /srv/ext so also bind mounted
+
+# TODO: make it record started container for the $img and then check/restart
+#       instead of running a new one
+docker run -it \
+  -e DB_PASSWORD=$DB_PASSWORD \
   -p 80:8080 \
-  -v "$topdir/../RunestoneServer/docker/entrypoint.sh:/entrypoint.sh" --entrypoint /entrypoint.sh \
   -v "$topdir/ext:/srv/ext" \
   -v "$topdir/ext/books:/srv/web2py/applications/runestone/books" \
-  yarikoptic-runestone:0.1.1
+  $img 
+  
+# -v "$topdir/../RunestoneServer/docker/entrypoint.sh:/entrypoint.sh" --entrypoint /entrypoint.sh \
