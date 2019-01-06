@@ -2,3 +2,6 @@
 	path = ext/books/fopp
 	url = https://github.com/dartmouth-pbs/fopp-pbs
 	branch = pbs-psyc161-wi19
+[submodule "ext/books/pythonds"]
+	path = ext/books/pythonds
+	url = https://github.com/dartmouth-pbs/pythonds
