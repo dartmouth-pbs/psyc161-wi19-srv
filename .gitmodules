@@ -1,0 +1,4 @@
+[submodule "ext/books/fopp"]
+	path = ext/books/fopp
+	url = https://github.com/dartmouth-pbs/fopp-pbs
+	branch = pbs-psyc161-wi19
